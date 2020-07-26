@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$ <span id="price-main">1,278</span> </h5>
-                        <h5>$0</h5>
-                        <h5>$ <span id="price-main2">1,278</span> </h5>
+                        <h5 id="total-price">$1,278</h5>
+                        <h5 id="tax-amount">$0</h5>
+                        <h5 id="grand-total">$1,278</h5>
                      </div>
                   </div>
                </div>
@@ -79,9 +79,9 @@
    </section>
    <script>
         function handleCount(product, isIncrease, val) {
-        const input= document.getElementById(product + '-count');
-         const count= parseInt(input.value);
-         let newCount= count; 
+             const input= document.getElementById(product + '-count');
+             const count= parseInt(input.value);
+             let newCount= count; 
         if(isIncrease==true){
             newCount= count+1;
         }
@@ -91,9 +91,27 @@
          input.value= newCount;
          const Total= newCount*val;
          document.getElementById(product + "-total").innerText= "$" + Total;
+         calculateTotal();
        }
 
+        function calculateTotal() {
+           const phoneCount= getInputValue('phone');
+           const caseCount= getInputValue('case');
+           const totalPrice = phoneCount*1219 + caseCount*59;
+           document.getElementById('total-price').innerText= '$' + totalPrice;
+           
+           const tax = (totalPrice*.1).toFixed(0);
+           document.getElementById('tax-amount').innerText= '$' + tax;
 
+           const grandTotal = totalPrice+tax;
+           document.getElementById('grand-total').innerText= '$' + grandTotal;
+
+       }
+
+       function getInputValue(product) {
+        const productCount = parseInt(document.getElementById(product + '-count').value);
+        return productCount;
+       }
     //    function handleCaseCount(isIncrease) {
     //     const caseInput= document.getElementById('case-count');
     //      const caseCount= parseInt(caseInput.value);
