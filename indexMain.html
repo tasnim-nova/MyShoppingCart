@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="minus-btn" class="btn btn-default"><i class="fas fa-minus"></i></button> 
-                           <input type="text" id="initialValue" class="form-control text-center " value="1">
-                           <button id="plus-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handleCount('phone',false, 1219)" class="btn btn-default"><i class="fas fa-minus"></i></button> 
+                           <input type="text" id="phone-count" class="form-control text-center " value="1">
+                           <button onclick="handleCount('phone', true, 1219)" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$ <span id="iPhone-price">1219</span> </h5>
+                        <h5 id="phone-total">$ 1219 </h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default" id="minus-btn2" ><i class="fas fa-minus"></i></button>
-                           <input type="text" id="initialValue2" class="form-control text-center " value="1">
-                           <button class="btn btn-default" id="plus-btn2"><i class="fas fa-plus"></i></button>
+                           <button onclick="handleCount('case', false, 59)" class="btn btn-default" ><i class="fas fa-minus"></i></button>
+                           <input id="case-count" type="text" class="form-control text-center " value="1">
+                           <button onclick="handleCount('case', true, 59)" class="btn btn-default" ><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$ <span id="iPhone-price2">59</span> </h5>
+                        <h5 id="case-total">$59</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -77,5 +77,52 @@
          </div>
       </div>
    </section>
+   <script>
+        function handleCount(product, isIncrease, val) {
+        const input= document.getElementById(product + '-count');
+         const count= parseInt(input.value);
+         let newCount= count; 
+        if(isIncrease==true){
+            newCount= count+1;
+        }
+        if(isIncrease== false && count>0){
+            newCount= count-1;
+        }
+         input.value= newCount;
+         const Total= newCount*val;
+         document.getElementById(product + "-total").innerText= "$" + Total;
+       }
+
+
+    //    function handleCaseCount(isIncrease) {
+    //     const caseInput= document.getElementById('case-count');
+    //      const caseCount= parseInt(caseInput.value);
+    //      let caseNewCount= caseCount; 
+    //     if(isIncrease==true){
+    //         caseNewCount= caseCount+1;
+    //     }
+    //     if(isIncrease== false && caseCount>0){
+    //         caseNewCount= caseCount-1;
+    //     }
+    //      caseInput.value= caseNewCount;
+    //      const caseTotal= caseNewCount*59;
+    //      document.getElementById("case-total").innerText= "$" + caseTotal;
+    //    }
+
+    //    function handlePhoneCount(isIncrease) {
+    //     const phoneInput= document.getElementById('phone-count');
+    //      const phoneCount= parseInt(phoneInput.value);
+    //      let phoneNewCount= phoneCount; 
+    //     if(isIncrease==true){
+    //         phoneNewCount= phoneCount+1;
+    //     }
+    //     if(isIncrease== false && phoneCount>0){
+    //         phoneNewCount= phoneCount-1;
+    //     }
+    //      phoneInput.value= phoneNewCount;
+    //      const phoneTotal= phoneNewCount*1219;
+    //      document.getElementById("phone-total").innerText= "$" + phoneTotal;
+    //    }
+   </script>
    </body>
    </html>
